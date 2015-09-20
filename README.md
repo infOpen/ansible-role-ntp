@@ -1,7 +1,8 @@
 ntp
 ===
 
-[![Build Status](https://travis-ci.org/infOpen/ansible-role-ntp.svg)](https://travis-ci.org/infOpen/ansible-role-ntp)
+[![Build Status](https://travis-ci.org/infOpen/ansible-role-ntp.svg?branch=master)](https://travis-ci.org/infOpen/ansible-role-ntp)
+
 Install ntp package.
 
 Requirements
