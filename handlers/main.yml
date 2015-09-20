@@ -1,0 +1,9 @@
+---
+
+# Handlers file for ntp
+
+- name: restart ntp
+  service:
+    name  : ntp
+    state : restarted
+  when : ntp_service_state != "stopped"

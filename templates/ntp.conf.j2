@@ -1,0 +1,84 @@
+#{{ ansible_managed }}
+
+# Common commands
+#----------------
+{% for peer_item in ntp_peer %}
+server {{ peer_item }}
+{% endfor %}
+
+{% for broadcast_item in ntp_broadcast %}
+server {{ broadcast_item }}
+{% endfor %}
+
+{% for manycastclient_item in ntp_manycastclient %}
+server {{ manycastclient_item }}
+{% endfor %}
+
+{% for server_item in ntp_server %}
+server {{ server_item }}
+{% endfor %}
+
+{% for restrict_item in ntp_restrict %}
+restrict {{ restrict_item }}
+{% endfor %}
+
+
+# Auxiliary Commands
+#-------------------
+{% for broadcastclient_item in ntp_broadcastclient %}
+broadcastclient {{ broadcastclient_item }}
+{% endfor %}
+
+{% for manycastserver_item in ntp_manycastserver %}
+manycastserver {{ manycastserver_item }}
+{% endfor %}
+
+{% for multicastclient_item in ntp_multicastclient %}
+multicastclient {{ multicastclient_item }}
+{% endfor %}
+
+
+# Authentication Commands
+#------------------------
+{% if ntp_autokey %}
+autokey {{ ntp_autokey }}
+{% endif %}
+
+{% if ntp_revoke %}
+revoke {{ ntp_revoke }}
+{% endif %}
+
+
+# Miscellaneous Options
+#----------------------
+{% if ntp_logfile %}
+logfile {{ ntp_logfile }}
+{% endif %}
+
+{% if ntp_driftfile %}
+driftfile {{ ntp_driftfile }}
+{% endif %}
+
+{% if ntp_enabled_feature|length != 0 %}
+enable {{ ntp_enabled_feature|join(' ') }}
+{% endif %}
+
+{% if ntp_disabled_feature|length != 0 %}
+enable {{ ntp_disabled_feature|join(' ') }}
+{% endif %}
+
+{% if ntp_includefile %}
+includefile {{ ntp_includefile }}
+{% endif %}
+
+{% for interface_drop_item in ntp_interface_drop %}
+interface drop {{ interface_drop_item }}
+{% endfor %}
+
+{% for interface_ignore_item in ntp_interface_ignore %}
+interface ignore {{ interface_ignore_item }}
+{% endfor %}
+
+{% for interface_listen_item in ntp_interface_listen %}
+interface listen {{ interface_listen_item }}
+{% endfor %}
