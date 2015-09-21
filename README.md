@@ -46,7 +46,7 @@ Follow the possible variables with their default values
     #-------------------
     ntp_broadcastclient : []
     ntp_manycastserver  : []
-    ntp_multicastclient : []
+    ntp_multicastclient : []
 
 
     # Authentication Commands
@@ -97,7 +97,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: infopen.ntp }
+         - { role: infOpen.ntp }
 
 License
 -------
