@@ -1,4 +1,4 @@
-﻿ntp
+ntp
 ===
 
 [![Build Status](https://travis-ci.org/infOpen/ansible-role-ntp.svg?branch=master)](https://travis-ci.org/infOpen/ansible-role-ntp)
