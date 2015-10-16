@@ -2,7 +2,7 @@
 
 # Tasks file for ntp
 
-- name: Load the OS specific varibles
+- name: Load the OS specific variables
   include_vars: "{{ role_path }}/vars/{{ ansible_os_family }}.yml"
 
 - include: install_debian.yml
