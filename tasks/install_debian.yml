@@ -3,6 +3,7 @@
 # Debian install tasks
 
 - name : Install ntp (Debian)
+  become: True
   apt  :
     name             : "{{ item }}"
     state            : "{{ ntp_package_state }}"

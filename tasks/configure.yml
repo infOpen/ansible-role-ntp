@@ -3,6 +3,7 @@
 # Configure tasks
 
 - name : Generate ntp config file
+  become: True
   template :
     src   : "{{ item }}"
     dest  : "{{ ntp_config_file_dest }}"
@@ -16,6 +17,7 @@
     - restart ntp
 
 - name : Enable ntp service on boot
+  become: True
   service :
     name    : "{{ ntp_service_name }}"
     enabled : "{{ ntp_service_enabled }}"
