@@ -2,8 +2,8 @@
 
 # Handlers file for ntp
 
-- name: restart ntp
+- name: 'Restart ntp'
   service:
-    name  : ntp
-    state : restarted
-  when : ntp_service_state != "stopped"
+    name: "{{ ntp_service_name }}"
+    state: 'restarted'
+  when: "{{ ntp_service_state != 'stopped' }}"

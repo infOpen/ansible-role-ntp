@@ -2,19 +2,22 @@
 
 # Tasks file for ntp
 
-- name: Load the OS specific variables
-  include_vars: "{{ role_path }}/vars/{{ ansible_os_family }}.yml"
+- name: 'Load the OS specific variables'
+  include_vars: "{{ role_path }}/vars/{{ ansible_os_family | lower }}.yml"
   tags:
-    - install
-    - ntp
+    - 'ntp::role'
+    - 'ntp::config'
+    - 'ntp::install'
 
-- include: install_debian.yml
-  tags:
-    - install
-    - ntp
-  when: ansible_os_family == "Debian"
 
-- include: configure.yml
+- include: 'install_debian.yml'
+  when: "{{ (ansible_os_family | lower)== 'debian' }}"
   tags:
-    - config
-    - ntp
+    - 'ntp::role'
+    - 'ntp::install'
+
+
+- include: 'configure.yml'
+  tags:
+    - 'ntp::role'
+    - 'ntp::config'

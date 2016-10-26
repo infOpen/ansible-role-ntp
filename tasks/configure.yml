@@ -2,23 +2,20 @@
 
 # Configure tasks
 
-- name : Generate ntp config file
+- name: 'Generate ntp config file'
   become: True
-  template :
-    src   : "{{ item }}"
-    dest  : "{{ ntp_config_file_dest }}"
-    owner : "{{ ntp_config_file_owner }}"
-    group : "{{ ntp_config_file_group }}"
-    mode  : "{{ ntp_config_file_mode }}"
-  with_first_found :
-    - "{{ inventory_dir }}/templates/ntp/ntp.conf.j2"
-    - "{{ role_path }}/templates/ntp.conf.j2"
-  notify :
-    - restart ntp
+  template:
+    src: "{{ role_path }}/templates/ntp.conf.j2"
+    dest: "{{ ntp_config_file_dest }}"
+    owner: "{{ ntp_config_file_owner }}"
+    group: "{{ ntp_config_file_group }}"
+    mode: "{{ ntp_config_file_mode }}"
+  notify: 'Restart ntp'
 
-- name : Enable ntp service on boot
+
+- name: 'Enable ntp service on boot'
   become: True
-  service :
-    name    : "{{ ntp_service_name }}"
-    enabled : "{{ ntp_service_enabled }}"
-    state   : "{{ ntp_service_state }}"
+  service:
+    name: "{{ ntp_service_name }}"
+    enabled: "{{ ntp_service_enabled }}"
+    state: "{{ ntp_service_state }}"
