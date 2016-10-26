@@ -1,25 +1,24 @@
 ---
 
 galaxy_info:
-  author: Alexandre Chaussier
-  description: Install ntp package
-  company: Infopen (http://infopen.pro)
-  license: MIT
-  min_ansible_version: 1.5
-
+  author: 'Alexandre Chaussier'
+  description: 'Install ntp package'
+  company: 'Infopen (http://infopen.pro)'
+  license: 'MIT'
+  min_ansible_version: '1.5'
+  github_branch: 'master'
   platforms:
-    - name: Ubuntu
+    - name: 'Ubuntu'
       versions:
-        - trusty
-        - utopic
-        - vivid
-    - name: Debian
+        - 'trusty'
+        - 'utopic'
+        - 'vivid'
+        - 'xenial'
+    - name: 'Debian'
       versions:
-        - squeeze
-        - wheezy
-
-  categories:
-    - networking
-    - system
-
+        - 'squeeze'
+        - 'wheezy'
+  galaxy_tags:
+    - 'networking'
+    - 'system'
 dependencies: []

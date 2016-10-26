@@ -2,12 +2,12 @@
 
 # Debian install tasks
 
-- name : Install ntp (Debian)
+- name: 'Install ntp (Debian)'
   become: True
-  apt  :
-    name             : "{{ item }}"
-    state            : "{{ ntp_package_state }}"
-    update_cache     : True
-    cache_valid_time : 3600
-  with_items : "{{ ntp_packages }}"
-  notify     : restart ntp
+  apt:
+    name: "{{ item }}"
+    state: "{{ ntp_package_state }}"
+    update_cache: True
+    cache_valid_time: 3600
+  with_items: "{{ ntp_packages }}"
+  notify: 'Restart ntp'
