@@ -3,6 +3,7 @@
 # Handlers file for ntp
 
 - name: 'Restart ntp'
+  become: True
   service:
     name: "{{ ntp_service_name }}"
     state: 'restarted'
