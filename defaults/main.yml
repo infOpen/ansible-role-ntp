@@ -1,6 +1,6 @@
 ---
 
-# Defaults file for ntp
+# Defaults vars file for ntp role
 
 # Package variables
 #------------------

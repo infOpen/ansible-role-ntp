@@ -1,6 +1,13 @@
 ---
 
-# Tasks file for ntp
+# Main tasks file for ntp role
+
+- name: 'INIT | Manage variables to use for our target'
+  include: "{{ role_path }}/tasks/manage_variables.yml"
+  tags:
+    - 'role::ntp'
+    - 'role::ntp::init'
+
 
 - name: 'Load the OS specific variables'
   include_vars: "{{ role_path }}/vars/{{ ansible_os_family | lower }}.yml"

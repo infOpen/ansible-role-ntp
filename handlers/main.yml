@@ -1,6 +1,6 @@
 ---
 
-# Handlers file for ntp
+# Handlers main file for ntp role
 
 - name: 'Restart ntp'
   become: True
