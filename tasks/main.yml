@@ -6,25 +6,22 @@
   include: "{{ role_path }}/tasks/manage_variables.yml"
   tags:
     - 'role::ntp'
+    - 'role::ntp::config'
     - 'role::ntp::init'
+    - 'role::ntp::install'
 
 
-- name: 'Load the OS specific variables'
-  include_vars: "{{ role_path }}/vars/{{ ansible_os_family | lower }}.yml"
+- name: 'INSTALL | Manage OS family installation tasks'
+  become: True
+  include: "{{ role_path }}/tasks/install_{{ ansible_os_family | lower }}.yml"
   tags:
-    - 'ntp::role'
-    - 'ntp::config'
-    - 'ntp::install'
+    - 'role::ntp'
+    - 'role::ntp::install'
 
 
-- include: 'install_debian.yml'
-  when: "{{ (ansible_os_family | lower)== 'debian' }}"
+- name: 'CONFIG | Manage configuration tasks'
+  become: True
+  include: "{{ role_path }}/tasks/configure.yml"
   tags:
-    - 'ntp::role'
-    - 'ntp::install'
-
-
-- include: 'configure.yml'
-  tags:
-    - 'ntp::role'
-    - 'ntp::config'
+    - 'role::ntp'
+    - 'role::ntp::config'

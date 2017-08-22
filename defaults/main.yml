@@ -2,13 +2,19 @@
 
 # Defaults vars file for ntp role
 
+# Repository management
+#------------------------------------------------------------------------------
+ntp_repository_update_cache: True
+ntp_repository_cache_valid_time: 3600
+
+
 # Package variables
-#------------------
-ntp_package_state: 'present'
+#------------------------------------------------------------------------------
+ntp_packages: "{{ _ntp_packages }}"
 
 
 # Config file variables
-#----------------------
+#------------------------------------------------------------------------------
 ntp_config_file_dest: '/etc/ntp.conf'
 ntp_config_file_owner: 'root'
 ntp_config_file_group: 'root'
@@ -16,13 +22,17 @@ ntp_config_file_mode: '0644'
 
 
 # Service variables
-#------------------
-ntp_service_state: 'started'
-ntp_service_enabled: True
+#------------------------------------------------------------------------------
+ntp_service:
+  enabled: True
+  name: "{{ _ntp_service_name }}"
+  state: 'started'
 
+
+# Configuration
+#------------------------------------------------------------------------------
 
 # Common commands
-#----------------
 ntp_peer: []
 ntp_broadcast: []
 ntp_manycastclient: []
@@ -35,22 +45,14 @@ ntp_restrict:
   - '127.0.0.1'
   - '::1'
 
-
 # Auxiliary Commands
-#-------------------
 ntp_broadcastclient: []
 ntp_manycastserver: []
 ntp_multicastclient: []
 
-
 # Authentication Commands
-#------------------------
 ntp_autokey: False
 ntp_revoke: False
-
-
-# Miscellaneous Options
-#----------------------
 
 # The log file (False: syslog)
 ntp_logfile: False

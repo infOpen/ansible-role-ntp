@@ -10,9 +10,9 @@
       become: True
       raw: 'apt-get update -qq'
       changed_when: False
-    - name: 'PREREQUISITES | APT | Install python 2.7'
+    - name: 'PREREQUISITES | APT | Install python 2.7 and iproute packages'
       become: True
-      raw: 'apt-get install -qq python2.7'
+      raw: 'apt-get install -qq python2.7 iproute'
       changed_when: False
 
 

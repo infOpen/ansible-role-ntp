@@ -1,0 +1,8 @@
+---
+
+# Debian OS family specific vars
+
+ntp_packages:
+  - name: 'ntp'
+
+_ntp_service_name: 'ntp'
