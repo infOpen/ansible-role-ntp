@@ -1,10 +1,14 @@
 ---
 
-# Handlers file for ntp
+# Handlers main file for ntp role
 
-- name: 'Restart ntp'
+- name: 'HANDLER | Restart ntp'
   become: True
   service:
-    name: "{{ ntp_service_name }}"
+    name: "{{ ntp_service.name }}"
     state: 'restarted'
-  when: "{{ ntp_service_state != 'stopped' }}"
+  when: "ntp_service.state != 'stopped'"
+  tags:
+    - 'role::ntp'
+    - 'role::ntp::config'
+    - 'role::ntp::install'
