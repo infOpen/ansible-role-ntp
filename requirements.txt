@@ -3,4 +3,4 @@ molecule==1.25.0
 pytest==3.6.2
 python-vagrant==0.5.15
 tox==3.0.0
-testinfra==1.14.0
+testinfra==1.15.0
