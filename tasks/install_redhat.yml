@@ -1,0 +1,10 @@
+---
+
+# RedHat install tasks
+
+- name: 'INSTALL | YUM | Install packages'
+  yum:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ ntp_packages }}"
+  notify: 'HANDLER | Restart ntp'
