@@ -3,7 +3,7 @@
 # Common commands
 #----------------
 {% for peer_item in ntp_peer %}
-server {{ peer_item }}
+peer {{ peer_item }}
 {% endfor %}
 
 {% for broadcast_item in ntp_broadcast %}
