@@ -103,6 +103,9 @@ ntp_revoke: False
 # The log file (False: syslog)
 ntp_logfile: False
 
+# Additional parameters
+ntp_additional_params:
+
 # The drift file
 ntp_driftfile: '/var/lib/ntp/ntp.drift'
 

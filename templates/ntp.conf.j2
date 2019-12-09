@@ -55,6 +55,11 @@ revoke {{ ntp_revoke }}
 logfile {{ ntp_logfile }}
 {% endif %}
 
+{% for ntp_additional_params_item in ntp_additional_params %}
+{{ ntp_additional_params_item }}
+{% endfor %}
+
+
 {% if ntp_driftfile %}
 driftfile {{ ntp_driftfile }}
 {% endif %}
