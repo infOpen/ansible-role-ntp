@@ -3,6 +3,7 @@
 # Configure tasks
 
 - name: 'CONFIG | Generate ntp config file'
+  become: True
   template:
     src: "{{ role_path }}/templates/ntp.conf.j2"
     dest: "{{ ntp_config_file_dest }}"
@@ -13,6 +14,7 @@
 
 
 - name: 'CONFIG | Manage ntp service'
+  become: True
   service:
     name: "{{ ntp_service.name }}"
     enabled: "{{ ntp_service.enabled }}"

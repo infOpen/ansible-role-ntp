@@ -12,16 +12,14 @@
 
 
 - name: 'INSTALL | Manage OS family installation tasks'
-  become: True
-  include: "{{ role_path }}/tasks/install_{{ ansible_os_family | lower }}.yml"
+  include_tasks: "{{ role_path }}/tasks/install_{{ ansible_os_family | lower }}.yml"
   tags:
     - 'role::ntp'
     - 'role::ntp::install'
 
 
 - name: 'CONFIG | Manage configuration tasks'
-  become: True
-  include: "{{ role_path }}/tasks/configure.yml"
+  include_tasks: "{{ role_path }}/tasks/configure.yml"
   tags:
     - 'role::ntp'
     - 'role::ntp::config'
