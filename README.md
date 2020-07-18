@@ -78,8 +78,8 @@ ntp_server:
   - '0.ubuntu.pool.ntp.org'
   - '1.ubuntu.pool.ntp.org'
 ntp_restrict:
-  - '-4 default kod notrap nomodify nopeer noquery'
-  - '-6 default kod notrap nomodify nopeer noquery'
+  - '-4 default kod limited notrap nomodify nopeer noquery'
+  - '-6 default kod limited notrap nomodify nopeer noquery'
   - '127.0.0.1'
   - '::1'
 
@@ -102,6 +102,9 @@ ntp_revoke: False
 
 # The log file (False: syslog)
 ntp_logfile: False
+
+# Additional parameters
+ntp_additional_params:
 
 # The drift file
 ntp_driftfile: '/var/lib/ntp/ntp.drift'

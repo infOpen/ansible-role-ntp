@@ -3,7 +3,7 @@
 # Common commands
 #----------------
 {% for peer_item in ntp_peer %}
-server {{ peer_item }}
+peer {{ peer_item }}
 {% endfor %}
 
 {% for broadcast_item in ntp_broadcast %}
@@ -54,6 +54,11 @@ revoke {{ ntp_revoke }}
 {% if ntp_logfile %}
 logfile {{ ntp_logfile }}
 {% endif %}
+
+{% for ntp_additional_params_item in ntp_additional_params %}
+{{ ntp_additional_params_item }}
+{% endfor %}
+
 
 {% if ntp_driftfile %}
 driftfile {{ ntp_driftfile }}
