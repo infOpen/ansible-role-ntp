@@ -3,6 +3,7 @@
 # RedHat install tasks
 
 - name: 'INSTALL | YUM | Install packages'
+  become: True
   yum:
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"

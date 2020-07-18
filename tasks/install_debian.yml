@@ -3,6 +3,7 @@
 # Debian install tasks
 
 - name: 'INSTALL | APT | Install packages'
+  become: True
   apt:
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
