@@ -3,18 +3,18 @@
 galaxy_info:
   author: 'Alexandre Chaussier'
   description: 'Ansible role to install and configure ntp'
-  company: 'Infopen (http://www.infopen.pro)'
+  company: 'Infopen (https://www.infopen.pro)'
   license: 'MIT'
-  min_ansible_version: '2.4'
+  min_ansible_version: '2.8'
   github_branch: 'master'
   platforms:
     - name: 'Debian'
       versions:
-        - 'jessie'
         - 'stretch'
+        - 'buster'
     - name: 'Ubuntu'
       versions:
-        - 'xenial'
+        - 'focal'
         - 'bionic'
     - name: 'EL'
       versions:

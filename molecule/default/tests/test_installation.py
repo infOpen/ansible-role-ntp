@@ -2,10 +2,12 @@
 Role tests
 """
 
+import os
 import pytest
 from testinfra.utils.ansible_runner import AnsibleRunner
 
-testinfra_hosts = AnsibleRunner('.molecule/ansible_inventory').get_hosts('all')
+testinfra_hosts = AnsibleRunner(
+    os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 
 def test_packages(host):
@@ -25,8 +27,16 @@ def test_user(host):
 
     assert service_user.exists
     assert service_user.group == 'ntp'
-    assert service_user.home == '/home/ntp'
-    assert service_user.shell == '/bin/false'
+
+    if host.system_info.distribution == 'centos':
+        assert service_user.home == '/etc/ntp'
+        assert service_user.shell == '/sbin/nologin'
+    elif host.system_info.codename == 'stretch':
+        assert service_user.home == '/home/ntp'
+        assert service_user.shell == '/bin/false'
+    else:
+        assert service_user.home == '/nonexistent'
+        assert service_user.shell == '/usr/sbin/nologin'
 
 
 def test_service(host):
@@ -34,14 +44,15 @@ def test_service(host):
     Test service state
     """
 
-    service = host.service('ntp')
+    _service_name = 'ntp'
+
+    if host.system_info.distribution == 'centos':
+        _service_name = 'ntpd'
+
+    service = host.service(_service_name)
 
     assert service.is_enabled
-
-    if host.system_info.codename in ['jessie', 'xenial']:
-        assert 'is running' in host.check_output('service ntp status')
-    else:
-        assert service.is_running
+    assert service.is_running
 
 
 def test_process(host):
@@ -49,7 +60,9 @@ def test_process(host):
     Test process state
     """
 
-    assert len(host.process.filter(comm='ntpd')) == 1
+    # Sometimes, two processes start on the service activate
+    # Only one process running after container restart
+    assert len(host.process.filter(comm='ntpd')) in (1, 2)
 
 
 @pytest.mark.parametrize('item_type,path,user,group,mode', [
